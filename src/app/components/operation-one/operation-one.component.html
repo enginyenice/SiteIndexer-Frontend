@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header text-center">
+        <b>Sayfada Geçen Kelimelerin Frekanslarını Hesaplama [Operation 1]</b>
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+            <b>Verilen bir URL için:</b><br>
+            URL içeriğinde (URL’in gösterdiği sayfa içeriğinde) her kelimenin kaçar defa yer aldığını (frekansını)
+            bulunuz.<br>
+            <b>Çıktı:</b> Bu aşamada projenin web sitesindeki bir sayfada (Örn: asama1.php, asama1.asp,
+            ...................) <br>
+            URL girilecek bir alan oluşturulacaktır. Sonrasında girilen bu URL’nin metnindeki her kelimenin sayfada kaç
+            defa yer aldığı bilgisi hesaplanarak yazdırılacaktır.
+        </p>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">URL</span>
+            <input #OperationOneInput type="text" class="form-control" placeholder="URL" aria-label="URL"
+                aria-describedby="basic-addon1">
+            <button (click)="getFrequency(OperationOneInput.value)" class="btn btn-primary">Anahtar Kelimeleri
+                Getir</button>
+        </div>
+        <div *ngIf="operationOneData">
+            <div class="alert alert-success" role="alert">
+                <strong>Site:</strong>&nbsp;<a href="{{operationOneData.url}}">{{operationOneData.title}}</a>
+              </div>
+            
+            <ul class="list-group">
+                <li class="list-group-item text-center">
+                    <strong>Frekans Değerleri</strong>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let frequency of operationOneData.frequances">
+                    {{frequency.keyword}}
+                    <span class="badge bg-primary rounded-pill">{{frequency.piece}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
