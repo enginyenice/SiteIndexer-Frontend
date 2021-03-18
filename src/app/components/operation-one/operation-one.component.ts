@@ -23,13 +23,6 @@ export class OperationOneComponent implements OnInit {
       console.log(response)
     })
   
-  
-  /*
-   this.brandService.getBrands().subscribe(response => {
-      this.brands = response.data;
-      this.dataLoaded = true;
-    })
-    */
   }
 
 

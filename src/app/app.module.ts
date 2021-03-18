@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { OperationOneComponent } from './components/operation-one/operation-one.component';
+import { OperationTwoComponent } from './components/operation-two/operation-two/operation-two.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    OperationOneComponent
+    OperationOneComponent,
+    OperationTwoComponent
   ],
   imports: [
     BrowserModule,

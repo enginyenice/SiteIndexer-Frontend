@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header text-center">
+    <b>Anahtar Kelime Çıkarma (%20) [Operation 2]</b>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+      <strong>Verilen 1 URL için,</strong><br />
+      URL metninde geçen kelimelerden en önemli kelimelerin (sayfanın içerik
+      özelliklerini tanımlayan ve kategorik özelliklerini yansıtan kelime
+      kümesi) belirlenerek anahtar kelimelerin çıkartınız (Aşağıda verilen
+      anahtar kelime oluşturma kriteri tamamen örnek gösterim amaçlıdır.
+      Uygulamada başarılı bir sonuç vermesi beklenmemektedir. Bu kısımda sizin
+      kendi kriterlerinizi doğru bir yaklaşımla oluşturmanız beklenmektedir.)<br />
+      <i>Örneğin, en yüksek frekansa sahip 5 kelimenin seçilmesi. </i>
+    </p>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">URL</span>
+      <input
+        #OperationTwoInput
+        type="text"
+        class="form-control"
+        placeholder="URL"
+        aria-label="URL"
+        aria-describedby="basic-addon1"
+      />
+      <button
+        (click)="getKeyword(OperationTwoInput.value)"
+        class="btn btn-primary"
+      >
+        Anahtar Kelimeleri Getir
+      </button>
+    </div>
+    <div *ngIf="operationTwoData">
+      <div class="alert alert-success" role="alert">
+        <strong>Site:</strong>&nbsp;<a href="{{ operationTwoData.url }}">{{
+          operationTwoData.title
+        }}</a>
+      </div>
+        <span class="fs-5" *ngFor="let keyword of operationTwoData.keywords"><span class="badge bg-primary">{{keyword}}</span>&nbsp;</span>
+    </div>
+  </div>
+</div>
