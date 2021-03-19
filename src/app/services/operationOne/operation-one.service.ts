@@ -12,7 +12,7 @@ export class OperationOneService {
 
   constructor(private httpClient: HttpClient) { }
 
-  apiUrl = environment.apiUrl + 'frequencycalculators';
+  apiUrl = environment.apiUrl + 'frequencycalculate';
   getFrequency(Url: String):Observable<ItemResponseModel<OperationOneModel>> {
     return this.httpClient.post<ItemResponseModel<OperationOneModel>>(this.apiUrl, { url: Url });
   }

@@ -28,9 +28,9 @@
                 <li class="list-group-item text-center">
                     <strong>Frekans Değerleri</strong>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let frequency of operationOneData.frequances">
-                    {{frequency.keyword}}
-                    <span class="badge bg-primary rounded-pill">{{frequency.piece}}</span>
+                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let frequency of operationOneData.words">
+                    {{frequency.word}}
+                    <span class="badge bg-primary rounded-pill">{{frequency.frequency}}</span>
                 </li>
             </ul>
         </div>

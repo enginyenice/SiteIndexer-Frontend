@@ -1,4 +1,4 @@
 export interface FrequanceModel{
-    keyword:String;
-    piece:Number;
+    word:String;
+    frequency:Number;
 }

@@ -36,7 +36,7 @@
           operationTwoData.title
         }}</a>
       </div>
-        <span class="fs-5" *ngFor="let keyword of operationTwoData.keywords"><span class="badge bg-primary">{{keyword}}</span>&nbsp;</span>
+        <span class="fs-5" *ngFor="let keyword of operationTwoData.keywords"><span class="badge bg-primary">{{keyword.word}} | Score: {{keyword.score}}</span>&nbsp;</span>
     </div>
   </div>
 </div>
