@@ -1,5 +1,5 @@
 export interface Keyword {
-    score:Number;
-    word:String;
+    word:string;
     frequency:Number;
+    score:Number;
 }

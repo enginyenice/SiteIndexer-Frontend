@@ -1,0 +1,125 @@
+<div class="card">
+    <div class="card-header text-center">
+      <b>Aşama 3 - 2 safya (Url) arasında benzerlik Skorlaması </b>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <b>Aşama 3 :</b><br>
+          Girilen 2 Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeler yardımı ile birbirlerine olan benzerliklerini hesaplar.
+          <br><br>
+          <b>Nasıl kullanılır ?</b><br>
+          Aşağıda bulunan giriş alanlarına benzerliklerini incelemek istediğiniz Url'lerin adresini giriniz. Girilen ikinci url'in ikinci url'e yüzde kaç oranında benzediği listelenir. 
+          <br>
+      </p>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">URL</span>
+            <input
+                #OperationThreeInputOne
+                type="text"
+                class="form-control"
+                placeholder="URL"
+                aria-label="URL"
+                aria-describedby="basic-addon1"
+            />
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">URL 2</span>
+            <input
+                #OperationThreeInputTwo
+                type="text"
+                class="form-control"
+                placeholder="URL"
+                aria-label="URL"
+                aria-describedby="basic-addon1"
+            />
+        <button (click)="getSimilarity(OperationThreeInputOne.value,OperationThreeInputTwo.value)" class="btn btn-primary">Gönder</button>
+    </div>
+      
+    <div class="accordion " *ngIf="result">
+        <div class="accordion-item">
+            <h1 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Hedef Url
+                </button>
+            </h1>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="alert alert-success" role="alert">
+                        <strong>Site Title : </strong>&nbsp;<a >{{
+                            result.webSite.title
+                        }}</a><br>
+                        <strong>Site Url &nbsp; : </strong>&nbsp;<a href="{{ result.webSite.url }}">{{
+                            result.webSite.url
+                        }}</a>
+                        </div>
+                        <table class="table table-secondary">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Anahtar kelime</th>
+                            <th scope="col">Frekans</th>
+                            <th scope="col">Skor</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fs-5" *ngFor="let keyword of result.webSite.keywords; let i=index">
+                            <tr>
+                            <th scope="row"><span class="badge bg-dark">{{i+1}}</span></th>
+                            <td>{{keyword.word}}</td>
+                            <td><span class="badge bg-secondary">{{keyword.frequency}}</span></td>
+                            <td><span class="badge bg-danger">{{keyword.score}}</span></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div><br>
+    <div class="accordion" *ngIf="result">
+        <div class="accordion-item ">
+            <h1 class="accordion-header " id="headingTwo">
+                <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Karşılaştırılan Url
+                </button>
+            </h1>
+            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="alert alert-success" role="alert">
+                        <strong>Site Title : </strong>&nbsp;<a >{{
+                            result.webSitePool[0].webSite.title
+                        }}</a><br>
+                        <strong>Site Url &nbsp; : </strong>&nbsp;<a href="{{ result.webSitePool[0].webSite.url }}">{{
+                            result.webSitePool[0].webSite.url
+                        }}</a><br>
+                        <strong>Site Benzerlik Skoru   : </strong>&nbsp;<span class="badge bg-danger fs-5">{{result.webSitePool[0].similarityScore}}%</span>
+                        </div>
+                        <table class="table table-secondary">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Anahtar kelime</th>
+                            <th scope="col">Frekans</th>
+                            <th scope="col">Skor</th>
+                            </tr>
+                        </thead>
+                        <tbody class="fs-5" *ngFor="let keyword of result.webSitePool[0].webSite.keywords; let i=index">
+                            <tr>
+                            <th scope="row"><span class="badge bg-dark">{{i+1}}</span></th>
+                            <td>{{keyword.word}}</td>
+                            <td><span class="badge bg-secondary">{{keyword.frequency}}</span></td>
+                            <td><span class="badge bg-danger">{{keyword.score}}</span></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    </div>
+</div>
+<div id="loading" [style.visibility]="control ? visible : hidden">
+    <div class="spinner-border text-light " style="width: 3rem; height: 3rem;" role="status">
+        <span class="visually-hidden ">Loading...</span>
+    </div>
+    <button type="button" (click)="closeLoading()" class="btn btn-secondary" style="margin-top: 10px;">İptal Et</button>
+</div>
