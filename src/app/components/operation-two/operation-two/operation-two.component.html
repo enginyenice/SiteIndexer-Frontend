@@ -1,17 +1,16 @@
 <div class="card">
   <div class="card-header text-center">
-    <b>Anahtar Kelime Çıkarma (%20) [Operation 2]</b>
+    <b>Aşama 2 - Sayfada geçen anahtar kelimeleri hesaplama</b>
   </div>
   <div class="card-body">
     <p class="card-text">
-      <strong>Verilen 1 URL için,</strong><br />
-      URL metninde geçen kelimelerden en önemli kelimelerin (sayfanın içerik
-      özelliklerini tanımlayan ve kategorik özelliklerini yansıtan kelime
-      kümesi) belirlenerek anahtar kelimelerin çıkartınız (Aşağıda verilen
-      anahtar kelime oluşturma kriteri tamamen örnek gösterim amaçlıdır.
-      Uygulamada başarılı bir sonuç vermesi beklenmemektedir. Bu kısımda sizin
-      kendi kriterlerinizi doğru bir yaklaşımla oluşturmanız beklenmektedir.)<br />
-      <i>Örneğin, en yüksek frekansa sahip 5 kelimenin seçilmesi. </i>
+      <b>Aşama 2 :</b><br>
+        Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeleri ve kaçar defa yer aldığını (frekansını)
+        hesaplar.
+        <br><br>
+        <b>Nasıl kullanılır ?</b><br>
+        Aşağıda bulunan giriş alanına incelemek istediğiniz Url adresini giriniz. 
+        <br>
     </p>
     <div class="input-group mb-3">
       <span class="input-group-text" id="basic-addon1">URL</span>
@@ -23,20 +22,36 @@
         aria-label="URL"
         aria-describedby="basic-addon1"
       />
-      <button
-        (click)="getKeyword(OperationTwoInput.value)"
-        class="btn btn-primary"
-      >
-        Anahtar Kelimeleri Getir
-      </button>
+      <button (click)="getKeyword(OperationTwoInput.value)" class="btn btn-primary">Gönder</button>
     </div>
+
     <div *ngIf="operationTwoData">
       <div class="alert alert-success" role="alert">
-        <strong>Site:</strong>&nbsp;<a href="{{ operationTwoData.url }}">{{
+        <strong>Site Title : </strong>&nbsp;<a >{{
           operationTwoData.title
+        }}</a><br>
+        <strong>Site Url &nbsp; : </strong>&nbsp;<a href="{{ operationTwoData.url }}">{{
+          operationTwoData.url
         }}</a>
       </div>
-        <span class="fs-5" *ngFor="let keyword of operationTwoData.keywords"><span class="badge bg-primary">{{keyword.word}} | Score: {{keyword.score}}</span>&nbsp;</span>
+      <table class="table table-secondary" *ngIf="operationTwoData">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Anahtar kelime</th>
+            <th scope="col">Frekans</th>
+            <th scope="col">Skor</th>
+          </tr>
+        </thead>
+        <tbody class="fs-5" *ngFor="let keyword of operationTwoData.keywords; let i=index">
+          <tr>
+            <th scope="row"><span class="badge bg-dark">{{i+1}}</span></th>
+            <td>{{keyword.word}}</td>
+            <td><span class="badge bg-secondary">{{keyword.frequency}}</span></td>
+            <td><span class="badge bg-danger">{{keyword.score}}</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

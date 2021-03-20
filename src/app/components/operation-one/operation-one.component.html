@@ -1,37 +1,57 @@
 <div class="card">
     <div class="card-header text-center">
-        <b>Sayfada Geçen Kelimelerin Frekanslarını Hesaplama [Operation 1]</b>
+        <b>Aşama 1 - Sayfada Geçen Kelimelerin Frekanslarını Hesaplama</b>
     </div>
     <div class="card-body">
         <p class="card-text">
-            <b>Verilen bir URL için:</b><br>
-            URL içeriğinde (URL’in gösterdiği sayfa içeriğinde) her kelimenin kaçar defa yer aldığını (frekansını)
-            bulunuz.<br>
-            <b>Çıktı:</b> Bu aşamada projenin web sitesindeki bir sayfada (Örn: asama1.php, asama1.asp,
-            ...................) <br>
-            URL girilecek bir alan oluşturulacaktır. Sonrasında girilen bu URL’nin metnindeki her kelimenin sayfada kaç
-            defa yer aldığı bilgisi hesaplanarak yazdırılacaktır.
+            <b>Aşama 1 :</b><br>
+            Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) her kelimenin kaçar defa yer aldığını (frekansını)
+            hesaplar.
+            <br><br>
+            <b>Nasıl kullanılır ?</b><br>
+            Aşağıda bulunan giriş alanına incelemek istediğiniz Url adresini giriniz. 
+            <br>
         </p>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">URL</span>
-            <input #OperationOneInput type="text" class="form-control" placeholder="URL" aria-label="URL"
+            <input 
+                #OperationOneInput 
+                type="text" 
+                class="form-control" 
+                placeholder="URL" 
+                aria-label="URL"
                 aria-describedby="basic-addon1">
-            <button (click)="getFrequency(OperationOneInput.value)" class="btn btn-primary">Anahtar Kelimeleri
-                Getir</button>
+            <button (click)="getFrequency(OperationOneInput.value)" class="btn btn-primary">Gönder</button>
         </div>
         <div *ngIf="operationOneData">
             <div class="alert alert-success" role="alert">
-                <strong>Site:</strong>&nbsp;<a href="{{operationOneData.url}}">{{operationOneData.title}}</a>
+                <strong>Site Title : </strong>&nbsp;<a >{{
+                  operationOneData.title
+                }}</a><br>
+                <strong>Site Url &nbsp; : </strong>&nbsp;<a href="{{ operationOneData.url }}">{{
+                  operationOneData.url
+                }}</a>
               </div>
-            
             <ul class="list-group">
                 <li class="list-group-item text-center">
                     <strong>Frekans Değerleri</strong>
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let frequency of operationOneData.words">
-                    {{frequency.word}}
-                    <span class="badge bg-primary rounded-pill">{{frequency.frequency}}</span>
-                </li>
+                <table class="table table-secondary" *ngIf="operationOneData">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Kelime</th>
+                        <th scope="col">Frekans</th>
+                      </tr>
+                    </thead>
+                    <tbody class="fs-5" *ngFor="let keyword of operationOneData.words; let i=index">
+                      <tr>
+                        <th scope="row"><span class="badge bg-dark">{{i+1}}</span></th>
+                        <td>{{keyword.word}}</td>
+                        <td><span class="badge bg-secondary">{{keyword.frequency}}</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
             </ul>
         </div>
     </div>
