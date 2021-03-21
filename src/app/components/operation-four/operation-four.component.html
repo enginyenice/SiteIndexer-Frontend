@@ -1,1 +1,52 @@
-<p>operation-four works!</p>
+<div class="card">
+    <div class="card-header text-center">
+      <b>Aşama 4 - 2 veya daha fazla sayfa (Url) arasında iki alt url'leride dahil edilerek benzerlik Skorlaması </b>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <b>Aşama 4 :</b><br>
+          Girilen 2 veya daha fazla Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeler yardımı ile birbirlerine olan benzerliklerini, alt url'leride dahil edilerek hesaplar.
+          <br><br>
+          <b>Nasıl kullanılır ?</b><br>
+          Aşağıda bulunan ilk alana karşılaştırma yapılacak url'i giriniz.<br>
+          İkinci alanda ise benzerlikleri incelenecek Url'lerin adresini giriniz. Altta bulunan liste içerisine ekleyiniz.<br>
+          Girilen ikinci url listesinde bulunan url'ler ve alt url'lerin birinci url'e yüzde kaç oranında benzediği, Url bilgileri, anahtar kelimeleri  listelenir. 
+          <br>
+      </p>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">URL</span>
+            <input
+                #OperationThreeInputOne
+                type="text"
+                class="form-control"
+                placeholder="URL"
+                aria-label="URL"
+                aria-describedby="basic-addon1"
+            />
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">URL 2</span>
+            <input
+                #OperationThreeInputTwo
+                type="text"
+                class="form-control"
+                placeholder="URL"
+                aria-label="URL"
+                aria-describedby="basic-addon1"
+            />
+        <button (click)="addUrl(OperationThreeInputTwo.value)" class="btn btn-primary">Ekle</button>
+    </div>
+    <div class="input-group mb-3">
+    <select class="form-select" #SelectUrl size="4" *ngFor="let url of urlList"  aria-label="size 3 select example">
+        <option selected value="">{{url}}</option>
+      </select>
+      <button (click)="removeUrl(SelectUrl.selectedIndex)" class="btn btn-primary">Kaldır</button>
+    </div>
+    <div class="input-group mb-3 justify-content-end"><button class="btn btn-primary">Gönder</button></div>  
+
+
+
+
+
+    
+</div>
