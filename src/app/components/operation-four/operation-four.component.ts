@@ -9,7 +9,7 @@ export class OperationFourComponent implements OnInit {
   constructor() { }
 
   urlList = new Array();
-
+  SelectUrl:string;
   addUrl(text:string){
     var control = false;
     if(text != " " && text!= ""){

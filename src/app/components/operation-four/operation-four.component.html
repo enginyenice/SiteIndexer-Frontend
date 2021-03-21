@@ -37,10 +37,13 @@
         <button (click)="addUrl(OperationThreeInputTwo.value)" class="btn btn-primary">Ekle</button>
     </div>
     <div class="input-group mb-3">
-    <select class="form-select" #SelectUrl size="4" *ngFor="let url of urlList"  aria-label="size 3 select example">
-        <option selected value="">{{url}}</option>
+    <select class="form-select" size="4" aria-label="size 3 select example">
+        <option   
+        *ngFor="let url of urlList; let optionIndex = index"
+        [value]="optionIndex"
+        >{{url}} {{optionIndex}}</option>
       </select>
-      <button (click)="removeUrl(SelectUrl.selectedIndex)" class="btn btn-primary">Kaldır</button>
+      <button (click)="removeUrl(0)" class="btn btn-primary">Kaldır</button>
     </div>
     <div class="input-group mb-3 justify-content-end"><button class="btn btn-primary">Gönder</button></div>  
 
