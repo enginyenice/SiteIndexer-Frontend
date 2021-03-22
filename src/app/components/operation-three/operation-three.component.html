@@ -96,24 +96,15 @@
 
 <div *ngIf="result && send == false">
   <nz-card class="mt-2" nzType="inner" nzTitle="Temel Site">
-    <nz-alert
-      nzType="success"
-      nzMessage="Site Bilgileri Getirildi"
-      [nzDescription]="alertMessage"
-    ></nz-alert>
+    <nz-alert nzType="success" [nzDescription]="alertMessage"></nz-alert>
     <ng-template #alertMessage>
       <strong>Site Title : </strong>&nbsp;<a href="{{ result.webSite.url }}">{{
         result.webSite.title
-      }}</a
-      ><br />
-      <strong>Site Url &nbsp; : </strong>&nbsp;<a
-        href="{{ result.webSite.url }}"
-        >{{ result.webSite.url }}</a
-      >
+      }}</a>
     </ng-template>
 
-    <nz-ribbon nzText="Anahtar Kelimeler">
-      <nz-card>
+    <nz-collapse nzAccordion>
+      <nz-collapse-panel nzHeader="Anahtar Kelimeler" [nzActive]="false">
         <nz-table
           class="mt-2"
           [nzPageSize]="5"
@@ -141,8 +132,8 @@
             </tr>
           </tbody>
         </nz-table>
-      </nz-card>
-    </nz-ribbon>
+      </nz-collapse-panel>
+    </nz-collapse>
   </nz-card>
 
   <nz-card
@@ -151,28 +142,25 @@
     nzType="inner"
     nzTitle="Hedef Site | {{ webSite.webSite.title }}"
   >
-    <nz-alert
-      nzType="success"
-      nzMessage="Site Bilgileri Getirildi"
-      [nzDescription]="alertMessage"
-    ></nz-alert>
+    <nz-alert nzType="info" [nzDescription]="alertMessage"></nz-alert>
     <ng-template #alertMessage>
-      <strong>Site Title : </strong>&nbsp;<a href="{{ result.webSite.url }}">{{
+      <strong>Site : </strong>&nbsp;<a href="{{ result.webSite.url }}">{{
         result.webSite.title
       }}</a
       ><br />
-      <strong>Site Url &nbsp; : </strong>&nbsp;<a
-        href="{{ result.webSite.url }}"
-        >{{ result.webSite.url }}</a
-      ><br />
-      <strong>Benzerlik Skoru &nbsp; : </strong> {{webSite.similarityScore}}
     </ng-template>
 
-    <nz-ribbon nzText="Anahtar Kelimeler">
-      <nz-card>
-        <nz-collapse nzAccordion>
-          <nz-collapse-panel  [nzActive]="false">
-            <nz-table
+    <nz-alert nzType="error" [nzDescription]="similarityRatio"></nz-alert>
+    <ng-template #similarityRatio>
+      <p>Benzerlik Skoru</p>
+      <nz-col [nzSpan]="12">
+        <nz-statistic nzValue="{{webSite.similarityScore}}" [nzSuffix]="'/ 100'"></nz-statistic>
+      </nz-col>    
+    </ng-template>
+
+    <nz-collapse nzAccordion>
+      <nz-collapse-panel nzHeader="Anahtar Kelimeler" [nzActive]="false">
+        <nz-table
           class="mt-2"
           [nzPageSize]="5"
           #keywordsTable
@@ -199,138 +187,7 @@
             </tr>
           </tbody>
         </nz-table>
-          </nz-collapse-panel>
-        </nz-collapse>
-        
-      </nz-card>
-    </nz-ribbon>
+      </nz-collapse-panel>
+    </nz-collapse>
   </nz-card>
 </div>
-
-<!--  <nz-table class="mt-2" [nzPageSize]=5 #keywordsTable [nzData]="operationTwoData.keywords" nzBordered nzTitle="Hesaplanan Frekans Değerleri">
-  <thead>
-    <tr>
-      <th>Anahtar kelime</th>
-      <th>Frekans</th>
-      <th>Skor</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let keyword of keywordsTable.data let i=index">
-            <td>{{keyword.word}}</td>
-            <td><span class="badge bg-secondary">{{keyword.frequency}}</span></td>
-            <td><span class="badge bg-danger">{{keyword.score}}</span></td>
-    </tr>
-  </tbody>
-</nz-table> -->
-
-<!--
-      
-    <div class="accordion " *ngIf="result">
-        <div class="accordion-item">
-            <h1 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Hedef Url
-                </button>
-            </h1>
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div class="alert alert-success" role="alert">
-                        <strong>Site Title : </strong>&nbsp;<a >{{
-                            result.webSite.title
-                        }}</a><br>
-                        <strong>Site Url &nbsp; : </strong>&nbsp;<a href="{{ result.webSite.url }}">{{
-                            result.webSite.url
-                        }}</a>
-                        </div>
-                        <table class="table table-secondary">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Anahtar kelime</th>
-                            <th scope="col">Frekans</th>
-                            <th scope="col">Skor</th>
-                            </tr>
-                        </thead>
-                        <tbody class="fs-5" *ngFor="let keyword of result.webSite.keywords; let i=index">
-                            <tr>
-                            <th scope="row"><span class="badge bg-dark">{{i+1}}</span></th>
-                            <td>{{keyword.word}}</td>
-                            <td><span class="badge bg-secondary">{{keyword.frequency}}</span></td>
-                            <td><span class="badge bg-danger">{{keyword.score}}</span></td>
-                            </tr>
-                        </tbody>
-                        </table>
-                </div>
-            </div>
-        </div>
-    </div><br>
-    <div class="accordion" *ngIf="result">
-        <div class="accordion-item ">
-            <h1 class="accordion-header " id="headingTwo">
-                <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    Karşılaştırılan Url
-                </button>
-            </h1>
-            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <div class="alert alert-success" role="alert">
-                        <strong>Site Title : </strong>&nbsp;<a >{{
-                            result.webSitePool[0].webSite.title
-                        }}</a><br>
-                        <strong>Site Url &nbsp; : </strong>&nbsp;<a href="{{ result.webSitePool[0].webSite.url }}">{{
-                            result.webSitePool[0].webSite.url
-                        }}</a><br>
-                        <strong>Site Benzerlik Skoru   : </strong>&nbsp;<span class="badge bg-danger fs-5">{{result.webSitePool[0].similarityScore}}%</span>
-                        </div>
-                        <table class="table table-secondary">
-                        <thead>
-                            <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Anahtar kelime</th>
-                            <th scope="col">Frekans</th>
-                            <th scope="col">Skor</th>
-                            </tr>
-                        </thead>
-                        <tbody class="fs-5" *ngFor="let keyword of result.webSitePool[0].webSite.keywords; let i=index">
-                            <tr>
-                            <th scope="row"><span class="badge bg-dark">{{i+1}}</span></th>
-                            <td>{{keyword.word}}</td>
-                            <td><span class="badge bg-secondary">{{keyword.frequency}}</span></td>
-                            <td><span class="badge bg-danger">{{keyword.score}}</span></td>
-                            </tr>
-                        </tbody>
-                        </table>
-                </div>
-            </div>
-        </div>
-    </div>
-        
-    </div>
-</div>
-<div id="loading" [style.visibility]="control ? visible : hidden">
-    <div class="spinner-border text-light " style="width: 3rem; height: 3rem;" role="status">
-        <span class="visually-hidden ">Loading...</span>
-    </div>
-    <button type="button" (click)="closeLoading()" class="btn btn-secondary" style="margin-top: 10px;">İptal Et</button>
-</div>
-
-
-<nz-tag *ngFor="let tag of tags; let i = index" [nzMode]="i === 0 ? 'default' : 'closeable'" (nzOnClose)="handleClose(tag)">
-    {{ sliceTagName(tag) }}
-  </nz-tag>
-  <nz-tag *ngIf="!inputVisible" class="editable-tag" nzNoAnimation (click)="showInput()">
-    <i nz-icon nzType="plus"></i>
-    New Tag
-  </nz-tag>
-  <input
-    #inputElement
-    nz-input
-    nzSize="small"
-    *ngIf="inputVisible"
-    type="text"
-    [(ngModel)]="inputValue"
-    style="width: 78px;"
-    (blur)="handleInputConfirm()"
-    (keydown.enter)="handleInputConfirm()"
-  /> -->
