@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +26,11 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
-
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 registerLocaleData(tr);
 
 @NgModule({
@@ -36,7 +40,7 @@ registerLocaleData(tr);
     OperationOneComponent,
     OperationTwoComponent,
     OperationThreeComponent,
-    OperationFourComponent
+    OperationFourComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,10 +58,15 @@ registerLocaleData(tr);
     NzButtonModule,
     NzIconModule,
     NzSpinModule,
-    NzTableModule
+    NzTableModule,
+    NzTagModule,
+    NzListModule,
+    NzNotificationModule,
+    NzCollapseModule,
+    NzBadgeModule
   ],
-  
+
   providers: [{ provide: NZ_I18N, useValue: tr_TR }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

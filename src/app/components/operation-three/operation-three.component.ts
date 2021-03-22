@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { OperationThreeModel } from 'src/app/models/operation-three/operationThreeModel';
 import { OperationThreeService } from 'src/app/services/operationThree/operation-three.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { WebSiteBasic } from 'src/app/models/websiteBasic/WebSiteBasic';
 
 @Component({
   selector: 'app-operation-three',
@@ -9,11 +11,14 @@ import { OperationThreeService } from 'src/app/services/operationThree/operation
 })
 export class OperationThreeComponent implements OnInit {
 
-  constructor(private operationThreeService:OperationThreeService) { }
+  constructor(private operationThreeService:OperationThreeService,private notificationService: NzNotificationService) { }
+  @ViewChild(TemplateRef, { static: false }) template?: TemplateRef<{}>;
+  webSite:string;
+  urlList:string[] = [];
+  webSitePool:WebSiteBasic[] = [];
+  result : OperationThreeModel;
   control = false;
-  visible = "visible";
-  hidden = "hidden";
-
+  send = false;
   ngOnInit(): void {
   }
  
@@ -21,19 +26,50 @@ export class OperationThreeComponent implements OnInit {
     this.control=false;
   }
 
-  result : OperationThreeModel;
 
-  getSimilarity(Url1:string,Url2:string){
-    this.control= true;
-    try {
-      this.operationThreeService.getSimilarity(Url1,Url2).subscribe(response => {
-        if(this.control){
+  addUrl(text:string){
+    var control = false;
+    if(text != " " && text!= ""){
+        this.urlList.forEach(p=> {if(p === text) control=true;});
+        if(!control)
+          {this.urlList.push(text); 
+            this.notificationService.template(this.template!, { nzData: { title: 'Harika!!', message: 'Url başarıyla havuza eklendi.', color: 'green' } });
+          } else {
+            this.notificationService.template(this.template!, { nzData: { title: 'Hata!!', message: 'Url hatalı veya havuzda bulunuyor.', color: 'red' } });
+          }
+    }        
+  }
+
+  removeUrl(index:number){
+    this.urlList.splice(index,1);
+    this.notificationService.template(this.template!, { nzData: { title: 'Harika!!', message: 'Url başarıyla havuzdan kaldırıldı.', color: 'green' } });
+  }
+
+
+  
+
+
+  getSimilarity(){
+    
+    if(this.webSite != null && this.urlList != null && this.urlList.length > 0){
+      this.send = true;
+      
+      this.urlList.forEach(item => {
+        var webSite:WebSiteBasic = {
+          url:item
+        };
+        this.webSitePool.push(webSite);
+      });
+      this.operationThreeService.getSimilarity(this.webSite,this.webSitePool).subscribe(response => {
           this.result = response.data;
-          this.control= false;
+          this.send = false;
+          this.webSitePool = [];
         }
-        });
-    } catch (error) {
-      this.control= false;
+        );
     }
+     else {
+      this.notificationService.template(this.template!, { nzData: { title: 'Hata!!', message: '1. Website veya havuz boş', color: 'red' } });
+    }
+   
   }
 }
