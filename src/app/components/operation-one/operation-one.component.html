@@ -1,28 +1,73 @@
-<div class="card">
+<nz-card  nzType="inner"  nzTitle="Aşama 1 - Sayfada Geçen Kelimelerin Frekanslarını Hesaplama">
+  <p>
+    <b>Aşama 1 :</b><br>
+    Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) her kelimenin kaçar defa yer aldığını (frekansını)
+    hesaplar.
+    <br><br>
+    <b>Nasıl kullanılır ?</b><br>
+    Aşağıda bulunan giriş alanına incelemek istediğiniz Url adresini giriniz. 
+    <br>
+  </p>
+
+
+
+  <nz-input-group nzSearch nzSize="large" nzAddOnBeforeIcon="link" [nzAddOnAfter]="suffixButton">
+    <input #OperationOneInput  type="text" nz-input placeholder="http://bilgisayar.kocaeli.edu.tr" />
+  </nz-input-group>
+  <ng-template #suffixButton>
+    <button (click)="getFrequency(OperationOneInput.value)" nz-button nzType="primary" nzSize="large" nzSearch>Gönder</button>
+  </ng-template>
+
+</nz-card>
+
+<nz-card class="mt-2 " *ngIf="send == true"  nzType="inner"  nzTitle="Sonuçlar">
+  <div class="text-center">
+    <nz-spin nzSimple></nz-spin>
+  </div>
+</nz-card>
+
+<nz-card class="mt-2" *ngIf="operationOneData && send == false"  nzType="inner"  nzTitle="Sonuçlar">
+  <nz-alert
+  nzType="success"
+  nzMessage="Site Bilgileri Getirildi"
+  [nzDescription]="alertMessage"
+></nz-alert>
+<ng-template #alertMessage>
+  <strong>Site Title : </strong>&nbsp;<a >{{
+                  operationOneData.title
+                }}</a><br>
+                <strong>Site Url &nbsp; : </strong>&nbsp;<a href="{{ operationOneData.url }}">{{
+                  operationOneData.url
+                }}</a>
+</ng-template>
+
+
+  <nz-table class="mt-2" [nzPageSize]=5 #wordsTable [nzData]="operationOneData.words" nzBordered nzTitle="Hesaplanan Frekans Değerleri">
+  <thead>
+    <tr>
+      <th>Kelime</th>
+      <th>Tekrar Sayısı</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of wordsTable.data">
+      <td>{{data.word}}</td>
+      <td>{{data.frequency}}</td>
+    </tr>
+  </tbody>
+</nz-table>
+</nz-card>
+
+
+
+
+<!-- <div class="card">
     <div class="card-header text-center">
         <b>Aşama 1 - Sayfada Geçen Kelimelerin Frekanslarını Hesaplama</b>
     </div>
     <div class="card-body">
-        <p class="card-text">
-            <b>Aşama 1 :</b><br>
-            Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) her kelimenin kaçar defa yer aldığını (frekansını)
-            hesaplar.
-            <br><br>
-            <b>Nasıl kullanılır ?</b><br>
-            Aşağıda bulunan giriş alanına incelemek istediğiniz Url adresini giriniz. 
-            <br>
-        </p>
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="basic-addon1">URL</span>
-            <input 
-                #OperationOneInput 
-                type="text" 
-                class="form-control" 
-                placeholder="URL" 
-                aria-label="URL"
-                aria-describedby="basic-addon1">
-            <button (click)="getFrequency(OperationOneInput.value)" class="btn btn-primary">Gönder</button>
-        </div>
+   
+        
         <div *ngIf="operationOneData">
             <div class="alert alert-success" role="alert">
                 <strong>Site Title : </strong>&nbsp;<a >{{
@@ -55,4 +100,4 @@
             </ul>
         </div>
     </div>
-</div>
+</div> -->

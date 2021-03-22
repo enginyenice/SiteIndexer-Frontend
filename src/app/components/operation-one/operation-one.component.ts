@@ -15,12 +15,16 @@ export class OperationOneComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  
   operationOneData: OperationOneModel;
+  dataLoaded = false;
+  send = false;
   getFrequency(url:String){
+    this.send = true;
     this.operationOneService.getFrequency(url).subscribe(response => {
       this.operationOneData = response.data;
-      
-      console.log(response)
+      this.dataLoaded = true;
+      this.send = false;
     })
   
   }

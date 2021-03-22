@@ -1,57 +1,62 @@
-<div class="card">
-  <div class="card-header text-center">
-    <b>Aşama 2 - Sayfada geçen anahtar kelimeleri hesaplama</b>
-  </div>
-  <div class="card-body">
-    <p class="card-text">
-      <b>Aşama 2 :</b><br>
-        Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeleri ve kaçar defa yer aldığını (frekansını)
-        hesaplar.
-        <br><br>
-        <b>Nasıl kullanılır ?</b><br>
-        Aşağıda bulunan giriş alanına incelemek istediğiniz Url adresini giriniz. 
-        <br>
-    </p>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">URL</span>
-      <input
-        #OperationTwoInput
-        type="text"
-        class="form-control"
-        placeholder="URL"
-        aria-label="URL"
-        aria-describedby="basic-addon1"
-      />
-      <button (click)="getKeyword(OperationTwoInput.value)" class="btn btn-primary">Gönder</button>
-    </div>
+<nz-card  nzType="inner"  nzTitle="Aşama 2 - Sayfada geçen anahtar kelimeleri hesaplama">
+  <p>
+    <b>Aşama 2 :</b><br>
+    Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeleri ve kaçar defa yer aldığını (frekansını)
+    hesaplar.
+    <br><br>
+    <b>Nasıl kullanılır ?</b><br>
+    Aşağıda bulunan giriş alanına incelemek istediğiniz Url adresini giriniz. 
+    <br>
+  </p>
 
-    <div *ngIf="operationTwoData">
-      <div class="alert alert-success" role="alert">
-        <strong>Site Title : </strong>&nbsp;<a >{{
-          operationTwoData.title
-        }}</a><br>
-        <strong>Site Url &nbsp; : </strong>&nbsp;<a href="{{ operationTwoData.url }}">{{
-          operationTwoData.url
-        }}</a>
-      </div>
-      <table class="table table-secondary" *ngIf="operationTwoData">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Anahtar kelime</th>
-            <th scope="col">Frekans</th>
-            <th scope="col">Skor</th>
-          </tr>
-        </thead>
-        <tbody class="fs-5" *ngFor="let keyword of operationTwoData.keywords; let i=index">
-          <tr>
-            <th scope="row"><span class="badge bg-dark">{{i+1}}</span></th>
+
+
+  <nz-input-group nzSearch nzSize="large" nzAddOnBeforeIcon="link" [nzAddOnAfter]="suffixButton">
+    <input #OperationTwoInput  type="text" nz-input placeholder="http://bilgisayar.kocaeli.edu.tr" />
+  </nz-input-group>
+  <ng-template #suffixButton>
+    <button (click)="getKeyword(OperationTwoInput.value)" nz-button nzType="primary" nzSize="large" nzSearch>Gönder</button>
+  </ng-template>
+
+</nz-card>
+
+<nz-card class="mt-2 " *ngIf="send == true"  nzType="inner"  nzTitle="Sonuçlar">
+  <div class="text-center">
+    <nz-spin nzSimple></nz-spin>
+  </div>
+</nz-card>
+
+<nz-card class="mt-2" *ngIf="operationTwoData && send == false"  nzType="inner"  nzTitle="Sonuçlar">
+  <nz-alert
+  nzType="success"
+  nzMessage="Site Bilgileri Getirildi"
+  [nzDescription]="alertMessage"
+></nz-alert>
+<ng-template #alertMessage>
+  <strong>Site Title : </strong>&nbsp;<a >{{
+                  operationTwoData.title
+                }}</a><br>
+                <strong>Site Url &nbsp; : </strong>&nbsp;<a href="{{ operationTwoData.url }}">{{
+                  operationTwoData.url
+                }}</a>
+</ng-template>
+
+
+  <nz-table class="mt-2" [nzPageSize]=5 #keywordsTable [nzData]="operationTwoData.keywords" nzBordered nzTitle="Hesaplanan Frekans Değerleri">
+  <thead>
+    <tr>
+      <th>Anahtar kelime</th>
+      <th>Frekans</th>
+      <th>Skor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let keyword of keywordsTable.data let i=index">
             <td>{{keyword.word}}</td>
             <td><span class="badge bg-secondary">{{keyword.frequency}}</span></td>
             <td><span class="badge bg-danger">{{keyword.score}}</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+    </tr>
+  </tbody>
+</nz-table>
+</nz-card>
+
