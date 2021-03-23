@@ -1,16 +1,24 @@
-<nz-card  nzType="inner"  nzTitle="Aşama 2 - Sayfada geçen anahtar kelimeleri hesaplama">
-  <p>
-    <b>Aşama 2 :</b><br>
-    Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeleri ve kaçar defa yer aldığını (frekansını)
-    hesaplar.
-    <br><br>
-    <b>Nasıl kullanılır ?</b><br>
-    Aşağıda bulunan giriş alanına incelemek istediğiniz Url adresini giriniz. 
-    <br>
-  </p>
+<ng-template #notification let-notification="data">
+  <nz-tag [nzColor]="notification.color">{{ notification.title }}</nz-tag>
+  <button nz-button nzSize="small">{{ notification.message }}</button>
+</ng-template>
+<ng-template #titleTemplate>
+  <div nz-row nzJustify="space-between">
+    <div nz-col nzMd="12">
+      Aşama 2 - Sayfada geçen anahtar kelimeleri hesaplama
+    </div>
+    <div nz-col nzMd="12">
+      <div nz-row nzJustify="end">
+        <div nz-col>
+          <app-operation-infos operationName="operationTwo"></app-operation-infos>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
 
 
-
+<nz-card  nzType="inner"  [nzTitle]="titleTemplate">
   <nz-input-group nzSearch nzSize="large" nzAddOnBeforeIcon="link" [nzAddOnAfter]="suffixButton">
     <input #OperationTwoInput  type="text" nz-input placeholder="http://bilgisayar.kocaeli.edu.tr" />
   </nz-input-group>

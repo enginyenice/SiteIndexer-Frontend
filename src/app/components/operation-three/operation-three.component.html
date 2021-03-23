@@ -1,29 +1,30 @@
-<ng-template let-notification="data">
+
+
+<ng-template #notification let-notification="data">
   <nz-tag [nzColor]="notification.color">{{ notification.title }}</nz-tag>
   <button nz-button nzSize="small">{{ notification.message }}</button>
+</ng-template>
+
+<ng-template #titleTemplate>
+  <div nz-row nzJustify="space-between">
+    <div nz-col nzMd="20">
+      Aşama 3 - URL havuzu arasında benzerlik skorlaması
+    </div>
+    <div nz-col nzMd="4">
+      <div nz-row nzJustify="end">
+        <div nz-col>
+          <app-operation-infos operationName="operationTree"></app-operation-infos>
+        </div>
+      </div>
+    </div>
+  </div>
 </ng-template>
 
 <nz-card
   nzHoverable="true"
   nzType="inner"
-  nzTitle="Aşama 3 - 2 sayfa (Url) arasında benzerlik Skorlaması"
+  [nzTitle]="titleTemplate"
 >
-  <p>
-    <b>Aşama 3 :</b><br />
-    Girilen 2 Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan
-    anahtar kelimeler yardımı ile birbirlerine olan benzerliklerini hesaplar.
-    <br /><br />
-    <b>Nasıl kullanılır ?</b><br />
-    Aşağıda bulunan giriş alanlarına benzerliklerini incelemek istediğiniz
-    Url'lerin adresini giriniz. Girilen ikinci url'in birinci url'e yüzde kaç
-    oranında benzediği listelenir. Aşağıda bulunan ilk alana karşılaştırma
-    yapılacak url'i giriniz.<br />
-    İkinci alanda ise benzerliği incelenecek Url'in adresini giriniz.<br />
-    Girilen ikinci url'in birinci url'e yüzde kaç oranında benzediği, Url
-    bilgileri, anahtar kelimeleri listelenir.
-    <br />
-  </p>
-
   <nz-input-group nzSearch nzSize="large" nzAddOnBeforeIcon="link">
     <input
       [(ngModel)]="webSite"
@@ -164,12 +165,12 @@
   <nz-alert nzType="info" [nzDescription]="alertMessage"></nz-alert>
   <ng-template #alertMessage>
     <div nz-row nzJustify="space-between">
-      <div nz-col nzMd="12">
+      <div nz-col nzMd="20">
         <strong>Site : </strong>&nbsp;<a href="{{ webSite.webSite.url }}">{{
           webSite.webSite.title
         }}</a>
       </div>
-      <div nz-col nzMd="12">
+      <div nz-col nzMd="4">
         <div nz-row nzJustify="end">
           <div nz-col>
             

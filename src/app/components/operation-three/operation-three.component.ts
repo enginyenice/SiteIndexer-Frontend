@@ -14,7 +14,7 @@ export class OperationThreeComponent implements OnInit {
   constructor(private operationThreeService:OperationThreeService,private notificationService: NzNotificationService) { }
   @ViewChild(TemplateRef, { static: false }) template?: TemplateRef<{}>;
   webSite:string;
-  sendUrl:string;
+  sendUrl:string = "";
   urlList:string[] = [];
   webSitePool:WebSiteBasic[] = [];
   result : OperationThreeModel;

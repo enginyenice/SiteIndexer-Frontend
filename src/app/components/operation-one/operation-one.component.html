@@ -1,4 +1,7 @@
-
+<ng-template #notification let-notification="data">
+  <nz-tag [nzColor]="notification.color">{{ notification.title }}</nz-tag>
+  <button nz-button nzSize="small">{{ notification.message }}</button>
+</ng-template>
 
 <ng-template #titleTemplate>
   <div nz-row nzJustify="space-between">
@@ -16,18 +19,6 @@
 </ng-template>
 
 <nz-card  nzType="inner"  [nzTitle]="titleTemplate">
-  <p>
-    <b>Aşama 1 :</b><br>
-    Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) her kelimenin kaçar defa yer aldığını (frekansını)
-    hesaplar.
-    <br><br>
-    <b>Nasıl kullanılır ?</b><br>
-    Aşağıda bulunan giriş alanına incelemek istediğiniz Url adresini giriniz. 
-    <br>
-  </p>
-
-
-
   <nz-input-group nzSearch nzSize="large" nzAddOnBeforeIcon="link" [nzAddOnAfter]="suffixButton">
     <input #OperationOneInput  type="text" nz-input placeholder="http://bilgisayar.kocaeli.edu.tr" />
   </nz-input-group>
