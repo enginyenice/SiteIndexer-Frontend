@@ -32,6 +32,8 @@ import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { OperationInfosComponent } from './components/operation-infos/operation-infos.component';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 registerLocaleData(tr);
 
 @NgModule({
@@ -42,6 +44,7 @@ registerLocaleData(tr);
     OperationTwoComponent,
     OperationThreeComponent,
     OperationFourComponent,
+    OperationInfosComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ registerLocaleData(tr);
     NzCollapseModule,
     NzBadgeModule,
     NzStatisticModule,
+    NzModalModule
   ],
 
   providers: [{ provide: NZ_I18N, useValue: tr_TR }],

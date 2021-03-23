@@ -1,4 +1,21 @@
-<nz-card  nzType="inner"  nzTitle="Aşama 1 - Sayfada Geçen Kelimelerin Frekanslarını Hesaplama">
+
+
+<ng-template #titleTemplate>
+  <div nz-row nzJustify="space-between">
+    <div nz-col nzMd="12">
+      Aşama 1 - Sayfada Geçen Kelimelerin Frekanslarını Hesaplama
+    </div>
+    <div nz-col nzMd="12">
+      <div nz-row nzJustify="end">
+        <div nz-col>
+          <app-operation-infos operationName="operationOne"></app-operation-infos>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<nz-card  nzType="inner"  [nzTitle]="titleTemplate">
   <p>
     <b>Aşama 1 :</b><br>
     Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) her kelimenin kaçar defa yer aldığını (frekansını)
@@ -57,47 +74,3 @@
   </tbody>
 </nz-table>
 </nz-card>
-
-
-
-
-<!-- <div class="card">
-    <div class="card-header text-center">
-        <b>Aşama 1 - Sayfada Geçen Kelimelerin Frekanslarını Hesaplama</b>
-    </div>
-    <div class="card-body">
-   
-        
-        <div *ngIf="operationOneData">
-            <div class="alert alert-success" role="alert">
-                <strong>Site Title : </strong>&nbsp;<a >{{
-                  operationOneData.title
-                }}</a><br>
-                <strong>Site Url &nbsp; : </strong>&nbsp;<a href="{{ operationOneData.url }}">{{
-                  operationOneData.url
-                }}</a>
-              </div>
-            <ul class="list-group">
-                <li class="list-group-item text-center">
-                    <strong>Frekans Değerleri</strong>
-                </li>
-                <table class="table table-secondary" *ngIf="operationOneData">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Kelime</th>
-                        <th scope="col">Frekans</th>
-                      </tr>
-                    </thead>
-                    <tbody class="fs-5" *ngFor="let keyword of operationOneData.words; let i=index">
-                      <tr>
-                        <th scope="row"><span class="badge bg-dark">{{i+1}}</span></th>
-                        <td>{{keyword.word}}</td>
-                        <td><span class="badge bg-secondary">{{keyword.frequency}}</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-            </ul>
-        </div>
-    </div>
-</div> -->

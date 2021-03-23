@@ -14,6 +14,7 @@ export class OperationThreeComponent implements OnInit {
   constructor(private operationThreeService:OperationThreeService,private notificationService: NzNotificationService) { }
   @ViewChild(TemplateRef, { static: false }) template?: TemplateRef<{}>;
   webSite:string;
+  sendUrl:string;
   urlList:string[] = [];
   webSitePool:WebSiteBasic[] = [];
   result : OperationThreeModel;
@@ -27,12 +28,13 @@ export class OperationThreeComponent implements OnInit {
   }
 
 
-  addUrl(text:string){
+  addUrl(){
     var control = false;
-    if(text != " " && text!= ""){
-        this.urlList.forEach(p=> {if(p === text) control=true;});
+    if(this.sendUrl != " " && this.sendUrl!= ""){
+        this.urlList.forEach(p=> {if(p === this.sendUrl) control=true;});
         if(!control)
-          {this.urlList.push(text); 
+          {this.urlList.push(this.sendUrl); 
+            this.sendUrl = "";
             this.notificationService.template(this.template!, { nzData: { title: 'Harika!!', message: 'Url başarıyla havuza eklendi.', color: 'green' } });
           } else {
             this.notificationService.template(this.template!, { nzData: { title: 'Hata!!', message: 'Url hatalı veya havuzda bulunuyor.', color: 'red' } });
