@@ -19,11 +19,11 @@ export class OperationInfosComponent implements OnInit {
   operationTreeTitle = 'URL havuzu arasında benzerlik skorlaması';
   operationTreeText =  'Girilen Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeler yardımı ile birbirlerine olan benzerliklerini hesaplar.';
 
-  operationFourTitle = 'Aşama 4 - URL havuzu ve Alt URL leri arasında benzerlik skorlaması';
+  operationFourTitle = 'URL havuzu ve Alt URL leri arasında benzerlik skorlaması';
   operationFourText =  'Girilen Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeler yardımı ile birbirlerine olan benzerliklerini ve ağacını hesaplar.';
 
-  operationFiveTitle = 'Eklenmedi';
-  operationFiveText =  'Eklenmedi';
+  operationFiveTitle = 'URL havuzu ve Alt URL leri arasında benzerlik skorlaması (Semantik dahil)';
+  operationFiveText =  'URL havuzu ve alt URL leri arasında semantik kontrolü yapılarak benzerlik skorlaması';
 
   modalTitle: string;
   modalDescription: string;

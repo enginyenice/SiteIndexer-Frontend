@@ -9,6 +9,7 @@ import { OperationOneComponent } from './components/operation-one/operation-one.
 import { OperationTwoComponent } from './components/operation-two/operation-two.component';
 import { OperationThreeComponent } from './components/operation-three/operation-three.component';
 import { OperationFourComponent } from './components/operation-four/operation-four.component';
+import { OperationFiveComponent } from './components/operation-five/operation-five.component';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { tr_TR } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
@@ -45,7 +46,8 @@ registerLocaleData(tr);
     OperationTwoComponent,
     OperationThreeComponent,
     OperationFourComponent,
-    OperationInfosComponent,
+    OperationFiveComponent,
+    OperationInfosComponent
   ],
   imports: [
     BrowserModule,

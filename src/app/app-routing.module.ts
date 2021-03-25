@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { OperationFiveComponent } from './components/operation-five/operation-five.component';
 import { OperationFourComponent } from './components/operation-four/operation-four.component';
 import { OperationOneComponent } from './components/operation-one/operation-one.component';
 import { OperationThreeComponent } from './components/operation-three/operation-three.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path:"operation-two", component:OperationTwoComponent},
   {path:"operation-three", component:OperationThreeComponent},
   {path:"operation-four", component:OperationFourComponent},
+  {path:"operation-five", component:OperationFiveComponent},
 
 ];
 
