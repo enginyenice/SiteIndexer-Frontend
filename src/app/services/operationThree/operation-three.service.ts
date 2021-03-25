@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class OperationThreeService {
 
   constructor(private httpClient:HttpClient) { }
-  apiUrl = environment.apiUrl+"urlsimilaritycalculate";
+  apiUrl = environment.apiUrl+"stagethree";
   
   getSimilarity(webSite:string,webSitePool:WebSiteBasic[]):Observable<ItemResponseModel<OperationThreeModel>> 
   {

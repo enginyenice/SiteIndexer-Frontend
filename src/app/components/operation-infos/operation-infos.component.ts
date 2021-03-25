@@ -19,8 +19,8 @@ export class OperationInfosComponent implements OnInit {
   operationTreeTitle = 'URL havuzu arasında benzerlik skorlaması';
   operationTreeText =  'Girilen Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeler yardımı ile birbirlerine olan benzerliklerini hesaplar.';
 
-  operationFourTitle = 'Sayfada Geçen Kelimelerin Frekanslarını Hesaplama';
-  operationFourText =  'Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) her kelimenin kaçar defa yer aldığını (frekansını)  hesaplar.';
+  operationFourTitle = 'Aşama 4 - URL havuzu ve Alt URL leri arasında benzerlik skorlaması';
+  operationFourText =  'Girilen Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeler yardımı ile birbirlerine olan benzerliklerini ve ağacını hesaplar.';
 
   operationFiveTitle = 'Eklenmedi';
   operationFiveText =  'Eklenmedi';

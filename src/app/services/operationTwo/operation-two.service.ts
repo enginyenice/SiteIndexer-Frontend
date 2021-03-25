@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class OperationTwoService {
 
   constructor(private httpClient:HttpClient) { }
-  apiUrl = environment.apiUrl+"keywordcalculate";
+  apiUrl = environment.apiUrl+"stagetwo";
     getKeyword(Url:String):Observable<ItemResponseModel<OperationTwoModel>> {
     return this.httpClient.post<ItemResponseModel<OperationTwoModel>>(this.apiUrl, { url: Url });
 
