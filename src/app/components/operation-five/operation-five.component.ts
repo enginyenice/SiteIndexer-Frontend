@@ -1,9 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { WebSiteBasic } from 'src/app/models/websiteBasic/WebSiteBasic';
-import { OperationFourService } from 'src/app/services/operationFour/operation-four.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { OperationFourModel } from 'src/app/models/operation-four/operationFourModel';
 import { NzFormatEmitEvent } from 'ng-zorro-antd/tree';
+import { OperationFiveService } from 'src/app/services/operationFive/operation-five.service';
+import { OperationFiveModel } from 'src/app/models/operation-five/operationFiveModel';
 
 @Component({
   selector: 'app-operation-five',
@@ -13,7 +14,7 @@ import { NzFormatEmitEvent } from 'ng-zorro-antd/tree';
 export class OperationFiveComponent implements OnInit {
 
   constructor(
-    private operationFourService: OperationFourService,
+    private operationFiveService: OperationFiveService,
     private notificationService: NzNotificationService
 
   ) { }
@@ -23,7 +24,7 @@ export class OperationFiveComponent implements OnInit {
   sendUrl: string = "";
   urlList: string[] = [];
   webSitePool: WebSiteBasic[] = [];
-  result: OperationFourModel;
+  result: OperationFiveModel;
   control = false;
   send = false;
   ngOnInit(): void {}
@@ -90,13 +91,14 @@ export class OperationFiveComponent implements OnInit {
         };
         this.webSitePool.push(webSite);
       });
-      this.operationFourService
+      this.operationFiveService
         .getSimilarity(this.webSite, this.webSitePool)
         .subscribe((response) => {
+          console.log(response)
           this.result = response.data;
           this.send = false;
           this.webSitePool = [];
-          console.log(response)
+          
         });
     } else {
       this.notificationService.template(this.template!, {

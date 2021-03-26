@@ -5,7 +5,8 @@
 <ng-template #titleTemplate>
   <div nz-row nzJustify="space-between">
     <div nz-col nzMd="12">
-      Aşama 5- URL havuzu ve alt URL leri arasında semantik kontrolü yapılarak benzerlik skorlaması
+      Aşama 5- URL havuzu ve alt URL leri arasında semantik kontrolü yapılarak
+      benzerlik skorlaması
     </div>
     <div nz-col nzMd="12">
       <div nz-row nzJustify="end">
@@ -18,8 +19,8 @@
     </div>
   </div>
 </ng-template>
-
 <nz-card nzHoverable="true" nzType="inner" [nzTitle]="titleTemplate">
+ 
   <nz-input-group nzSearch nzSize="large" nzAddOnBeforeIcon="link">
     <input
       [(ngModel)]="webSite"
@@ -93,6 +94,9 @@
   nzType="inner"
   nzTitle="Sonuçlar"
 >
+
+
+
   <div class="text-center">
     <nz-spin nzSimple></nz-spin>
   </div>
@@ -149,11 +153,11 @@
     <nz-collapse>
       <nz-collapse-panel nzHeader="Url Ağacı" nzActive="true">
         <nz-tree
-        [nzData]="result.urlTree"
-        nzShowLine
-        (nzClick)="nzEvent($event)"
-      >
-      </nz-tree>
+          [nzData]="result.urlTree"
+          nzShowLine
+          (nzClick)="nzEvent($event)"
+        >
+        </nz-tree>
       </nz-collapse-panel>
 
       <nz-collapse-panel nzHeader="Hedef Site Listesi" nzActive="false">
@@ -184,7 +188,17 @@
               </div>
             </div>
           </ng-template>
-
+          <nz-list nzBordered nzHeader="Semantik Kelimeler">
+            <nz-list-item *ngFor="let semanticKeywords of webSite.webSite.semanticKeywords">
+              <span nz-typography><nz-tag [nzColor]="'green'">
+                <strong>{{semanticKeywords.word}}</strong>
+              </nz-tag>
+              &nbsp;<i nz-icon nzType="double-right" nzTheme="outline"></i>&nbsp;
+              <nz-tag class="mb-1 mt-1" [nzColor]="'gold'" *ngFor="let similarWords of semanticKeywords.similarWords"> <strong>{{similarWords.word}} ({{similarWords.frequency}} Adet)</strong></nz-tag>
+              
+            </span>
+            </nz-list-item>
+          </nz-list>
           <nz-collapse nzAccordion>
             <nz-collapse-panel nzHeader="Anahtar Kelimeler" [nzActive]="false">
               <nz-table
