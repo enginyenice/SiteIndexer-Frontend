@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { OperationOneComponent } from './components/operation-one/operation-one.component';
 import { OperationTwoComponent } from './components/operation-two/operation-two.component';
@@ -36,6 +37,7 @@ import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { OperationInfosComponent } from './components/operation-infos/operation-infos.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
+
 registerLocaleData(tr);
 
 @NgModule({
@@ -47,7 +49,8 @@ registerLocaleData(tr);
     OperationThreeComponent,
     OperationFourComponent,
     OperationFiveComponent,
-    OperationInfosComponent
+    OperationInfosComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
