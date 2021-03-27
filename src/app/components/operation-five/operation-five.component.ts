@@ -64,6 +64,15 @@ export class OperationFiveComponent implements OnInit {
         });
       }
     }
+    else{
+      this.notificationService.template(this.template!, {
+        nzData: {
+          title: 'Hata!!',
+          message: 'Url alanı boş.',
+          color: 'red',
+        },
+      });
+    }
   }
 
   removeUrl(index: number) {

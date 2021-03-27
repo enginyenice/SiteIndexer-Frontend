@@ -17,7 +17,7 @@ export class OperationFourComponent implements OnInit {
   ) {}
   @ViewChild(TemplateRef, { static: false }) template?: TemplateRef<{}>;
   webSite: string;
-  sendUrl: string = "";
+  sendUrl: string = '';
   urlList: string[] = [];
   webSitePool: WebSiteBasic[] = [];
   result: OperationFourModel;
@@ -28,7 +28,6 @@ export class OperationFourComponent implements OnInit {
   nzEvent(event: NzFormatEmitEvent): void {
     console.log(event);
   }
-
 
   closeLoading() {
     this.control = false;
@@ -59,6 +58,14 @@ export class OperationFourComponent implements OnInit {
           },
         });
       }
+    } else {
+      this.notificationService.template(this.template!, {
+        nzData: {
+          title: 'Hata!!',
+          message: 'Url alanı boş.',
+          color: 'red',
+        },
+      });
     }
   }
 
@@ -93,7 +100,7 @@ export class OperationFourComponent implements OnInit {
           this.result = response.data;
           this.send = false;
           this.webSitePool = [];
-          console.log(response)
+          console.log(response);
         });
     } else {
       this.notificationService.template(this.template!, {
