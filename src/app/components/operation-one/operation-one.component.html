@@ -6,7 +6,7 @@
 <ng-template #titleTemplate>
   <div nz-row nzJustify="space-between">
     <div nz-col nzMd="12">
-      Aşama 1 - Sayfada Geçen Kelimelerin Frekanslarını Hesaplama
+      <h5>Aşama 1 - Sayfada Geçen Kelimelerin Frekanslarını Hesaplama</h5>
     </div>
     <div nz-col nzMd="12">
       <div nz-row nzJustify="end">
@@ -18,7 +18,7 @@
   </div>
 </ng-template>
 
-<nz-card  nzType="inner"  [nzTitle]="titleTemplate">
+<nz-card nzHoverable="true"  nzType="inner"  [nzTitle]="titleTemplate">
   <nz-input-group nzSearch nzSize="large" nzAddOnBeforeIcon="link" [nzAddOnAfter]="suffixButton">
     <input #OperationOneInput  type="text" nz-input placeholder="http://bilgisayar.kocaeli.edu.tr" />
   </nz-input-group>
@@ -27,13 +27,13 @@
   </ng-template>
 </nz-card>
 
-<nz-card class="mt-2 " *ngIf="send == true"  nzType="inner"  nzTitle="Sonuçlar">
+<nz-card nzHoverable="true" class="mt-2 " *ngIf="send == true"  nzType="inner"  nzTitle="Sonuçlar">
   <div class="text-center">
     <nz-spin nzSimple></nz-spin>
   </div>
 </nz-card>
 
-<nz-card class="mt-2" *ngIf="operationOneData && send == false"  nzType="inner"  nzTitle="Sonuçlar">
+<nz-card nzHoverable="true" class="mt-2" *ngIf="operationOneData && send == false"  nzType="inner"  nzTitle="Sonuçlar">
   <nz-alert
   nzType="success"
   nzMessage="Site Bilgileri Getirildi"
