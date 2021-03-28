@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://localhost:44384/api/"
+  apiUrl: "https://siteindexer-backend.ue.r.appspot.com/api/"
 };
