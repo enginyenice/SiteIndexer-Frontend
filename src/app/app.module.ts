@@ -39,7 +39,6 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { FooterComponent } from './components/footer/footer.component';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 registerLocaleData(tr);
 
 @NgModule({
@@ -80,8 +79,7 @@ registerLocaleData(tr);
     NzStatisticModule,
     NzModalModule,
     NzTreeModule,
-    NzDividerModule,
-    NzCarouselModule
+    NzDividerModule
   ],
 
   providers: [{ provide: NZ_I18N, useValue: tr_TR }],
