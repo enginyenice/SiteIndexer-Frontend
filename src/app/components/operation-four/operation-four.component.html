@@ -107,7 +107,7 @@
       <ng-template #alertMessage>
         <strong>Site Title : </strong>&nbsp;<a
           href="{{ result.webSite.url }}"
-          >{{ result.webSite.title }}</a
+          >{{ result.webSite.title ? result.webSite.title : result.webSite.url }}</a
         >
       </ng-template>
 
@@ -164,7 +164,8 @@
           *ngFor="let webSite of result.webSitePool"
           class="mt-2"
           nzType="inner"
-          nzTitle="{{ webSite.webSite.title }}"
+          nzTitle="{{ !webSite.webSite.title ? webSite.webSite.url : webSite.webSite.title }}"
+          
         >
           <nz-alert nzType="info" [nzDescription]="alertMessage"></nz-alert>
           <ng-template #alertMessage>
@@ -172,7 +173,7 @@
               <div nz-col nzMd="12">
                 <strong>Site : </strong>&nbsp;<a
                   href="{{ webSite.webSite.url }}"
-                  >{{ webSite.webSite.title }}</a
+                  >{{ !webSite.webSite.title ? webSite.webSite.url : webSite.webSite.title }}</a
                 >
               </div>
               <div nz-col nzMd="12">

@@ -109,7 +109,7 @@
       <ng-template #alertMessage>
         <strong>Site : </strong>&nbsp;<a target="_blank"
           href="{{ result.webSite.url }}"
-          >{{ result.webSite.title }}</a
+          >{{ result.webSite.title ? result.webSite.title : result.webSite.url  }}</a
         >
       </ng-template>
 
@@ -155,10 +155,10 @@
       *ngFor="let webSite of result.webSitePool"
       class="mt-2"
       nzType="inner"
-      nzTitle="{{ webSite.webSite.title }}"
+      nzTitle="{{ webSite.webSite.title ? webSite.webSite.title : webSite.webSite.url  }}"
     >
 
-
+    
 
   <!--  -->
 
@@ -167,7 +167,7 @@
     <div nz-row nzJustify="space-between">
       <div nz-col nzMd="20">
         <strong>Site : </strong>&nbsp;<a target="_blank" href="{{ webSite.webSite.url }}">{{
-          webSite.webSite.title
+          webSite.webSite.title ? webSite.webSite.title : webSite.webSite.url 
         }}</a>
       </div>
       <div nz-col nzMd="4">
