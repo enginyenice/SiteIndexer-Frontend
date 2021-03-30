@@ -43,8 +43,8 @@
   [nzDescription]="alertMessage"
 ></nz-alert>
 <ng-template #alertMessage>
-  <strong>Site Title : </strong>&nbsp;<a >{{
-                  operationTwoData.title
+  <strong>Site Title : </strong>&nbsp;<a target="_blank" href="{{operationTwoData.url}}">{{
+                operationTwoData.title ? operationTwoData.title : operationTwoData.url 
                 }}</a><br>
                 <strong>Site Url &nbsp; : </strong>&nbsp;<a target="_blank" href="{{ operationTwoData.url }}">{{
                   operationTwoData.url
