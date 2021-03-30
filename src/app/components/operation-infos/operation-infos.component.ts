@@ -11,7 +11,7 @@ export class OperationInfosComponent implements OnInit {
   constructor(private modal: NzModalService) {}
   isVisible = false;
   operationOneTitle = 'Sayfada Geçen Kelimelerin Frekanslarını Hesaplama';
-  operationOneText =  'Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) her kelimenin kaçar defa yer aldığını (frekansını)  hesaplar.';
+  operationOneText =  'Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) her kelimenin kaçar defa yer aldığını (frekansını) hesaplar.';
 
   operationTwoTitle = 'Sayfada geçen anahtar kelimeleri hesaplama';
   operationTwoText =  'Url içeriğinde (Url’in gösterdiği sayfa içeriğinde) bulunan anahtar kelimeleri ve kaçar defa yer aldığını (frekansını) hesaplar.';

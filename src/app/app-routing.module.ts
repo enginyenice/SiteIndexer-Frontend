@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { OperationFiveComponent } from './components/operation-five/operation-five.component';
 import { OperationFourComponent } from './components/operation-four/operation-four.component';
@@ -10,6 +11,7 @@ import { OperationTwoComponent } from './components/operation-two/operation-two.
 const routes: Routes = [
   {path:"", redirectTo : "/home",  pathMatch: 'full'},
   {path:"home", component:HomeComponent},
+  {path:"footer", component:FooterComponent},
   {path:"operation-one", component:OperationOneComponent},
   {path:"operation-two", component:OperationTwoComponent},
   {path:"operation-three", component:OperationThreeComponent},
